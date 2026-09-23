@@ -57,8 +57,3 @@ Run all cells top to bottom.
 ## Output
 
 I don't export a new file here. The models, metrics, and plots stay in the notebook.
-
-## Next Steps
-
-Phase 4: Reporting. I'll combine Phase 1, 2, and 3 into one report or dashboard, built
-around the project's 5 research questions.
