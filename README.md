@@ -29,8 +29,10 @@ Each phase folder has its own notebook and README (except for Phase 4), with the
 
 ## Data
 
-The raw survey file is not in this repo (about 150 MB, listed in `.gitignore`). I plan to
-host it on GitHub Releases and link it here once that's set up.
+The raw survey file is not in this repo (about 150 MB, listed in `.gitignore`). Download
+it here: [survey_data_duplicates.csv](https://github.com/pxshyn/dev-market-insights/releases/download/data-v1/survey_data_duplicates.csv)
+
+Place it at `data/survey_data_duplicates.csv` before running Phase 1.
 
 ## How to Run
 
