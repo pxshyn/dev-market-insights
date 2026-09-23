@@ -18,12 +18,12 @@ report the findings, across 4 phases.
 
 ## Project Phases
 
-| Phase             | What I do                                                                          | Folder                   |
-| ----------------- | ---------------------------------------------------------------------------------- | ------------------------ |
-| 1. Data Wrangling | Clean duplicates, missing values, and text labels. Encode and engineer features.   | [`Phase 1/`](Phase%201/) |
-| 2. EDA            | Explore the cleaned data. Answer all 5 research questions with charts and stats.   | [`Phase 2/`](Phase%202/) |
-| 3. Modeling       | Build a Simple and a Multiple Linear Regression to predict pay.                    | [`Phase 3/`](Phase%203/) |
-| 4. Reporting      | Planned. Combine all findings into one report, built around the 5 questions above. | [`Phase 4/`](Phase%204/) |
+| Phase             | What I do                                                                          | Folder                  |
+| ----------------- | ---------------------------------------------------------------------------------- | ----------------------- |
+| 1. Data Wrangling | Clean duplicates, missing values, and text labels. Encode and engineer features.   | [`phase1/`](Phase%201/) |
+| 2. EDA            | Explore the cleaned data. Answer all 5 research questions with charts and stats.   | [`phase2/`](Phase%202/) |
+| 3. Modeling       | Build a Simple and a Multiple Linear Regression to predict pay.                    | [`phase3/`](Phase%203/) |
+| 4. Reporting      | Planned. Combine all findings into one report, built around the 5 questions above. | [`phase4/`](Phase%204/) |
 
 Each phase folder has its own notebook and README (except for Phase 4), with the full details and results.
 
