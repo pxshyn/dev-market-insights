@@ -115,16 +115,3 @@ bottom.
   `RemoteWork_raw`, `CodingActivities_raw`, and the flags I made here (`is_comp_outlier`,
   `RemoteWork_imputed`, `CodingActivities_imputed`, `Age_num`). 65,437 rows x 40 columns.
 - Charts and tables in the notebook (not saved to disk, re-run to see them again).
-
-## Next Steps (Phase 3)
-
-Phase 3 should start from `data/survey_data_eda_ready.csv`, and should:
-
-1. **Solve the `Age_num` vs. `WorkExp` correlation (r = 0.85)** before using both as
-   model features. Not decided yet.
-2. Recompute Min-Max / Z-score scaling for pay, after deciding how to handle outliers, with
-   new column names (Phase 1's `_MinMax_experimental` / `_Zscore_experimental` are just a
-   first try).
-3. Test country and `ExperienceLevel` as top salary-driver features (Section 4).
-4. Check if programming language adds a pay signal beyond country and experience (Section
-   6: Erlang, Elixir, and Clojure pay the most among common languages).
