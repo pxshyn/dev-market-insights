@@ -38,11 +38,22 @@ I built two models in this notebook to predict developer pay: Simple Linear Regr
 - **MLR (all features):** R² = 0.537, RMSE = 0.579 (log scale).
 - **R² gain from adding categorical features:** +0.368.
 - **MLR error in dollars:** MAE is about $31,535.
-- **Biggest factors (by coefficient size):** country matters most - United States (+1.54),
-  Canada (+1.10), United Kingdom (+1.02), and Germany (+0.91) all raise predicted pay the
-  most. Being retired lowers it the most (-0.67).
+- **Biggest factors (by coefficient size):** country matters most. Compared with Brazil,
+  United States (+1.54), Canada (+1.10), United Kingdom (+1.02), and Germany (+0.91) raise
+  predicted pay the most. `Not employed, and not looking for work` (+0.99) also ranks high
+  in the top 5, but I do not read it as a real effect (see "Known Limits"). Being retired
+  lowers predicted pay the most (-0.67).
 
 Country explains pay differences much more than experience. But my model still misses almost half of the pay differences (R² = 0.537), so other things I did not use - like programming language or company size - probably matter too. I should not use this model to set exact salaries, only to compare which factors matter most.
+
+## Known Limits
+
+- **`Employment` columns:** I kept all the one-hot `Employment` columns from Phase 1 and
+  did not drop a reference group. `Employment` is a multi-select field, so each
+  coefficient is compared with "none of these selected", which is not a real group. I
+  don't treat these coefficients as clean effects.
+- **Reference groups:** each coefficient for country and remote work is relative to a
+  dropped group (Brazil for country, Hybrid for remote work).
 
 ## How to Run
 
