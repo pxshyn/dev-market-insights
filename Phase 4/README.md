@@ -8,6 +8,8 @@ that presents them.
 
 ## Power BI Dashboard
 
+[**View the live dashboard**](https://app.powerbi.com/links/Rt-xLG2iOq?ctid=a74aa7fa-f7f9-4020-a84a-057abbba6e9b&pbi_source=linkShare&bookmarkGuid=7d471da5-1d4b-4ae2-818d-3b8e6bd90d98)
+
 ![Page 1: Who took this survey, and how reliable is the pay data?](images/dashboard_page1_survey_profile.png)
 ![Page 2: Compensation Deep Dive](images/dashboard_page2_compensation.png)
 ![Page 3: Market Trends & Satisfaction](images/dashboard_page3_market_satisfaction.png)
@@ -41,11 +43,11 @@ pay data is usable but thin: only about a third of respondents reported it.
 **Answer:** Pay is very skewed to the right, so I flagged outliers with IQR on the log
 scale. This flagged 1,723 respondents (7.35%).
 
-| Method | Lower bound | Upper bound | Outliers flagged |
-| --- | --- | --- | --- |
-| 3-sigma (raw) | -474,116 | 646,426 | 89 |
-| IQR (raw) | -80,177 | 220,861 | 978 |
-| **IQR (log)** | 5,454 | 647,443 | **1,723 (7.35%)** |
+| Method        | Lower bound | Upper bound | Outliers flagged  |
+| ------------- | ----------- | ----------- | ----------------- |
+| 3-sigma (raw) | -474,116    | 646,426     | 89                |
+| IQR (raw)     | -80,177     | 220,861     | 978               |
+| **IQR (log)** | 5,454       | 647,443     | **1,723 (7.35%)** |
 
 Skewness is 52.92 on the raw value and -2.26 after the log-transform (Phase 1). Median pay
 is $65,000 with outliers and $70,000 without (Phase 2, Section 3).
@@ -65,10 +67,10 @@ job type (`DevType`) against pay, so there is not enough data to conclude on it.
   `Employment` coefficients (see "Limits").
 
 | Remote work | Phase 2 median (with outliers) | Dashboard median (no outliers, read from chart) |
-| --- | --- | --- |
-| Remote | $75,000 (n=9,591) | about 80K |
-| Hybrid | $66,592 (n=9,907) | about 70K |
-| In-person | $44,586 (n=3,937) | about 51K |
+| ----------- | ------------------------------ | ----------------------------------------------- |
+| Remote      | $75,000 (n=9,591)              | about 80K                                       |
+| Hybrid      | $66,592 (n=9,907)              | about 70K                                       |
+| In-person   | $44,586 (n=3,937)              | about 51K                                       |
 
 On the dashboard, median pay by experience level is about 96K (Senior), 73K (Mid-level),
 50K (Junior), and 35K (Entry-level) [cần xác nhận: values read from the chart].
@@ -103,6 +105,7 @@ pay subset].
 ## Insights Across the Phases
 
 **Phase 1**
+
 - Only 10 duplicate rows existed (65,447 to 65,437). Pay was the real data quality issue:
   `CompTotal` is missing 48.44% and `ConvertedCompYearly` 64.19%, too high to fill, so I
   left them as `NaN`.
@@ -110,6 +113,7 @@ pay subset].
   that use these columns depend a bit on that choice.
 
 **Phase 2**
+
 - Raw outlier rules give a negative lower bound for pay, so they don't work here. Removing
   outliers moves the median up by $5,000.
 - I flagged the imputed rows: 10,631 `RemoteWork` values. This lets me check how much they
@@ -121,12 +125,14 @@ pay subset].
   respondents.
 
 **Phase 3**
+
 - MAE is about $31,535 in dollars. The model is good for comparing factors, not for setting
   salaries.
 - I only used 15,011 rows (64.1% of the pay subset) after removing outliers and missing
   features.
 
 **Phase 4**
+
 - Country medians on the dashboard have no minimum sample size. Small countries like
   Antigua and Barbuda and Andorra rank high, behind the United States (about 143K)
   [cần xác nhận: their sample sizes].
@@ -154,13 +160,11 @@ pay subset].
 
 ## Project Structure
 
-| Phase | Folder |
-| --- | --- |
-| 1. Data Wrangling | [`Phase 1/`](../Phase%201/) |
-| 2. EDA | [`Phase 2/`](../Phase%202/) |
-| 3. Modeling | [`Phase 3/`](../Phase%203/) |
-| 4. Reporting (this folder) | [`Phase 4/`](./) |
+| Phase                      | Folder                      |
+| -------------------------- | --------------------------- |
+| 1. Data Wrangling          | [`Phase 1/`](../Phase%201/) |
+| 2. EDA                     | [`Phase 2/`](../Phase%202/) |
+| 3. Modeling                | [`Phase 3/`](../Phase%203/) |
+| 4. Reporting (this folder) | [`Phase 4/`](./)            |
 
 - `images/` - dashboard screenshots.
-- `model_summary.csv`, `model_coefficients.csv` - Phase 3 results, typed by hand for the
-  dashboard.
