@@ -8,6 +8,8 @@ I built this project to find what drives developer pay and job satisfaction, usi
 Stack Overflow Developer Survey. I clean the data, explore it, build a simple model, and
 report the findings, across 4 phases.
 
+**Live dashboard:** [View on Power BI](https://app.powerbi.com/links/Rt-xLG2iOq?ctid=a74aa7fa-f7f9-4020-a84a-057abbba6e9b&pbi_source=linkShare&bookmarkGuid=7d471da5-1d4b-4ae2-818d-3b8e6bd90d98)
+
 ## Research Questions
 
 1. **Data quality:** Who took the survey? How reliable is the pay data (about 64% missing)?
@@ -18,14 +20,15 @@ report the findings, across 4 phases.
 
 ## Project Phases
 
-| Phase             | What I do                                                                          | Folder                  |
-| ----------------- | ---------------------------------------------------------------------------------- | ----------------------- |
-| 1. Data Wrangling | Clean duplicates, missing values, and text labels. Encode and engineer features.   | [`phase1/`](Phase%201/) |
-| 2. EDA            | Explore the cleaned data. Answer all 5 research questions with charts and stats.   | [`phase2/`](Phase%202/) |
-| 3. Modeling       | Build a Simple and a Multiple Linear Regression to predict pay.                    | [`phase3/`](Phase%203/) |
-| 4. Reporting      | Planned. Combine all findings into one report, built around the 5 questions above. | [`phase4/`](Phase%204/) |
+| Phase             | What I do                                                                                              | Folder                  |
+| ----------------- | ------------------------------------------------------------------------------------------------------ | ----------------------- |
+| 1. Data Wrangling | Clean duplicates, missing values, and text labels. Encode and engineer features.                       | [`phase1/`](Phase%201/) |
+| 2. EDA            | Explore the cleaned data. Answer all 5 research questions with charts and stats.                       | [`phase2/`](Phase%202/) |
+| 3. Modeling       | Build a Simple and a Multiple Linear Regression to predict pay.                                        | [`phase3/`](Phase%203/) |
+| 4. Reporting      | Answer the 5 questions above, list the insights from all phases, and show the Power BI dashboard.      | [`phase4/`](Phase%204/) |
 
-Each phase folder has its own notebook and README (except for Phase 4), with the full details and results.
+Each phase folder has its own README with the full details and results. Phases 1-3 also
+have a notebook. Phase 4 has no notebook, because I built it in Power BI.
 
 ## Data
 
@@ -37,4 +40,5 @@ Place it at `data/survey_data_duplicates.csv` before running Phase 1.
 ## How to Run
 
 Each phase's README has its own setup steps. In general: run Phase 1 first, then Phase 2,
-then Phase 3, in that order. Each phase reads the file(s) the one before it saved.
+then Phase 3, in that order. Each phase reads the file(s) the one before it saved. Phase 4
+is a report, so there is nothing to run.
