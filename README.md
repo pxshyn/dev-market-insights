@@ -1,9 +1,5 @@
 # Developer Market Trends & Salary Drivers
 
-**Author:** Quan Le  
-**University:** UEH (University of Economics Ho Chi Minh City)  
-**Student ID:** 31241021233
-
 I built this project to find what drives developer pay and job satisfaction, using the
 Stack Overflow Developer Survey. I clean the data, explore it, build a simple model, and
 report the findings, across 4 phases.
