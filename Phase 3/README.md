@@ -58,7 +58,8 @@ Country explains pay differences much more than experience. But my model still m
 ## How to Run
 
 ```bash
-pip install pandas numpy matplotlib scikit-learn
+pip install pandas numpy matplotlib scikit-learn jupyter
+cd "Phase 3"
 jupyter notebook salary_prediction_modeling.ipynb
 ```
 

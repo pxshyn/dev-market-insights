@@ -22,8 +22,8 @@ I build on Phase 1's two files. I don't repeat any of Phase 1's work.
 - **`DevType` / `Industry`:** I checked if either field has multiple `;`-separated values
   per person, like the language fields do. I found zero multi-value rows, so I treat both
   as single-select and use them as-is. See Section 2 of the notebook.
-- **Not in this phase:** dropping outlier rows (I only flag them) and Min-Max / Z-score
-  scaling (that's for Phase 3, after outlier handling is set).
+- **Not in this phase:** dropping outlier rows (I only flag them; Phase 3 removes them
+  before modeling).
 
 ## Research Questions
 
@@ -41,7 +41,7 @@ I build on Phase 1's two files. I don't repeat any of Phase 1's work.
 | 1 | Imputation audit (before vs. after Phase 1) | `RemoteWork_imputed`, `CodingActivities_imputed` |
 | 2 | Respondent profile, missing-pay rate by country/job type, multi-select check | `Country_clean`, `Employment`, `ExperienceLevel`, `Industry`, `DevType` |
 | 3 | Distribution plots, 3 outlier methods (3-sigma raw, IQR raw, IQR log) | `ConvertedCompYearly`, `ConvertedCompYearly_log`, `is_comp_outlier` |
-| 4 | Median/IQR pay by group, with and without outliers | Country, `ExperienceLevel`, `EdLevel_clean`, `Employment`, `RemoteWork` |
+| 4 | Pay box plot by country, median pay by experience and remote work, education mix by job type | `Country_clean`, `ExperienceLevel`, `RemoteWork`, `EdLevel_clean`, `Employment` |
 | 5 | Pearson & Spearman correlation, multicollinearity check | `ConvertedCompYearly_log`, `WorkExp`, `YearsCodePro_num`, `Age_num`, `JobSat` |
 | 6 | Explode multi-select fields, median pay by language (n >= 30) | `LanguageHaveWorkedWith`, `LanguageWantToWorkWith` |
 | 7 | Job satisfaction distribution and group comparison | `JobSat` |
@@ -77,8 +77,10 @@ Median pay: **$65,000** with outliers, **$70,000** without them.
 **Salary drivers**
 - Remote work: Remote median $75,000 (n=9,591), Hybrid $66,592 (n=9,907), In-person
   $44,586 (n=3,937).
-- Country, `ExperienceLevel`, `EdLevel_clean`, and `Employment` all show clear pay
-  differences by group (see notebook Section 4 for the full breakdown).
+- Country and `ExperienceLevel` also show pay differences by group (see the charts in
+  notebook Section 4).
+- `EdLevel_clean` and `Employment`: Section 4 only shows the education mix of each job
+  type, not pay by group. Their effect on pay comes from the Phase 3 model.
 
 **Correlation and multicollinearity**
 - `Age_num` correlates with: `WorkExp` 0.848, `YearsCodePro_num` 0.832,
@@ -100,7 +102,8 @@ Median pay: **$65,000** with outliers, **$70,000** without them.
 ## How to Run
 
 ```bash
-pip install pandas numpy matplotlib seaborn
+pip install pandas numpy matplotlib seaborn jupyter
+cd "Phase 2"
 jupyter notebook market_trends_and_salary_drivers_eda.ipynb
 ```
 
@@ -111,7 +114,7 @@ bottom.
 ## Output
 
 - `data/survey_data_eda_ready.csv` - the joined dataset: Phase 1's core columns, plus
-  `JobSat`, `WorkExp`, `Age`, `DevType`, `Industry`, the two language fields,
+  `JobSat`, `JobSatPoints_1`, `WorkExp`, `Age`, `DevType`, `Industry`, the two language fields,
   `RemoteWork_raw`, `CodingActivities_raw`, and the flags I made here (`is_comp_outlier`,
   `RemoteWork_imputed`, `CodingActivities_imputed`, `Age_num`). 65,437 rows x 40 columns.
 - Charts and tables in the notebook (not saved to disk, re-run to see them again).

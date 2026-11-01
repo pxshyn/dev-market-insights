@@ -21,8 +21,9 @@ These 5 questions guide the whole project (Phase 1, 2, and 3):
 
 - **Raw file:** `data/survey_data_duplicates.csv`, 65,447 rows x 114 columns. This is a
   modified copy of the original survey (it has synthetic duplicate rows added).
-- **Not in this repo:** the whole `data/` folder is in `.gitignore` (the raw file is about
-  150 MB). Place it at `data/survey_data_duplicates.csv` before running the notebook.
+- **Not in this repo:** all the CSV files in `data/` are listed in `.gitignore` (the raw
+  file is about 150 MB). Place it at `data/survey_data_duplicates.csv` before running the
+  notebook.
 
 ## Scope
 
@@ -61,8 +62,8 @@ questions (`WorkExp`, `Age`, `DevType`, `Industry`, `LanguageHaveWorkedWith`,
 > **Note:** `ConvertedCompYearly_MinMax_experimental` and `ConvertedCompYearly_Zscore_experimental`
 > are an early trial, before I handle outliers. I use `_experimental` on purpose, so no
 > one mistakes them for a final feature. Phase 2 flags outliers (doesn't delete them), and
-> Phase 3 makes the real scaled columns after that, under different names. Don't reuse
-> these two columns as-is.
+> Phase 3 models `ConvertedCompYearly_log` directly, so no later phase uses these two
+> columns. Don't reuse them as-is.
 
 > **`CompTotal`:** I keep it in both output files, unchanged, for reference only (for
 > example, to spot-check `ConvertedCompYearly`'s USD conversion). No analysis in this
@@ -73,7 +74,7 @@ questions (`WorkExp`, `Age`, `DevType`, `Industry`, `LanguageHaveWorkedWith`,
 
 - **Duplicates:** 10 fully duplicated rows found and removed (65,447 to 65,437 rows).
 - **Missing rates (core columns):** `Country` 9.94%, `EdLevel` 7.11%, `RemoteWork` 16.25%,
-  `CodingActivities` 16.77%, `YearsCodePro` 21.14%, `CompTotal` 48.44%,
+  `CodingActivities` 16.77%, `YearsCodePro` 21.13%, `CompTotal` 48.44%,
   `ConvertedCompYearly` 64.19%.
 - **Skew of `ConvertedCompYearly`:** 52.92 before the log-transform, -2.26 after.
 - **Output:** `data/survey_data_deduplicated_full.csv` (65,437 rows x 114 columns) and
@@ -82,8 +83,9 @@ questions (`WorkExp`, `Age`, `DevType`, `Industry`, `LanguageHaveWorkedWith`,
 ## How to Run
 
 ```bash
-pip install pandas numpy matplotlib
-jupyter notebook General_Data_Wrangling.ipynb
+pip install pandas numpy matplotlib jupyter
+cd "Phase 1"
+jupyter notebook general_data_wrangling.ipynb
 ```
 
 Place `survey_data_duplicates.csv` in `data/` first, then run all cells top to bottom. I
@@ -96,7 +98,7 @@ the wrangled core-column dataset at the end.
   here if a later phase needs a column outside my core set.
 - `data/survey_data_cleaned_core.csv`, the core columns after standardization, encoding,
   imputation, feature engineering, and normalization: `Country_clean`, `EdLevel_clean`,
-  `has_compensation_data`, `ExperienceLevel`, `ConvertedCompYearly_log`,
+  `has_compensation_data`, `YearsCodePro_num`, `ExperienceLevel`, `ConvertedCompYearly_log`,
   `ConvertedCompYearly_MinMax_experimental`, `ConvertedCompYearly_Zscore_experimental`,
   plus the one-hot `Employment` columns and `CompTotal` (reference only, see note above).
   Use this file when a later phase needs exactly these columns, already wrangled.
